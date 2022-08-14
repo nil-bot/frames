@@ -46,37 +46,37 @@ function getcolorforrange(r, g, b)
     end
     
     if closestcolour == "black" then
-        return "ðŸ–¤"
+        return "🖤"
     elseif closestcolour == "white" then
-        return "ðŸ¤"
+        return "🤍"
     elseif closestcolour == "gray" then
-        return "ðŸ’¿"
+        return "💿"
     elseif closestcolour == "darkgray" then
-        return "ðŸŒ‘"
+        return "🌑"
     elseif closestcolour == "blue" then
-        return "ðŸ’™"
+        return "💙"
     elseif closestcolour == "brown" then
-        return "ðŸ¤Ž"
+        return "🤎"
     elseif closestcolour == "lightbrown" then
-        return "ðŸ§¤"
+        return "🧤"
     elseif closestcolour == "verylightbrown" then
-        return "ðŸ“œ"
+        return "📜"
     elseif closestcolour == "pale" then
-        return "ðŸ»"
+        return "👍🏻"
     elseif closestcolour == "green" then
-        return "ðŸ’š"
+        return "💚"
     elseif closestcolour == "lightgreen" then
-        return "ðŸŒµ"
+        return "🌵"
     elseif closestcolour == "orange" then
-        return "ðŸ§¡"
+        return "🧡"
     elseif closestcolour == "purple" then
-        return "ðŸ’œ"
+        return "💜"
     elseif closestcolour == "red" then
-        return "â¤ï¸"
-    elseif closestcolour == "lightyellow" then
-        return "ðŸ’›"
+        return "❤️"
     elseif closestcolour == "yellow" then
-        return "ðŸ“"
+        return "💛"
+    elseif closestcolour == "lightyellow" then
+        return "📁"
     end
 end
 
