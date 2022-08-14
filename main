@@ -1,6 +1,6 @@
 _G.Enabled = true
 --local data = readfile("nframes/amongus.txt")
-local data = game:HttpGet("https://raw.githubusercontent.com/nil-bot/frames/main/AmongUs") -- prerendered amongus video
+local data = game:HttpGet("https://raw.githubusercontent.com/nil-bot/frames/main/main") -- prerendered amongus video
 
 function update(text)
     local args = {
