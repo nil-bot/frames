@@ -4,7 +4,7 @@ local data = game:HttpGet("https://raw.githubusercontent.com/nil-bot/frames/main
 
 function update(text)
     local args = {
-        [1] = "FilterText",
+        [1] = "Text",
         [2] = text,
         }
     }
