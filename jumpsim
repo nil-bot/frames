@@ -1,0 +1,73 @@
+local player = game.Players.LocalPlayer
+local mouse = player:getMouse()
+local myBooth = nil
+
+local events = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents
+local messageDoneFiltering = events.OnMessageDoneFiltering
+
+local TotalJumps = 0
+local TotalRebirths = 0
+local JumpMulti = 0
+
+local JumpsNeededToRebirth = 500
+local JumpsNeedsToUpgrade = 50
+
+function setBooth(text, imageId)
+  local args = {
+      [1] = "Update",
+      [2] = {
+          ["DescriptionText"] = text,
+          ["ImageId"] = imageId
+      }
+  }
+  game:GetService("ReplicatedStorage").CustomiseBooth:FireServer(unpack(args))
+end
+
+for i,v in pairs(workspace:GetChildren()) do
+  if v:IsA("Model") and v.Name == "Booth" then
+     if (player.Character.PrimaryPart.Position - v.Table.Position).Magnitude < 15 then
+        myBooth = v
+        print("Got the booth!")
+     end
+  end
+end
+
+setBooth("(Commands : !rebirth, !upgrade)".." | Rebirths : "..TotalRebirths..", Multiplier : "..JumpMulti..", Jumps : "..TotalJumps)
+local logs = {}
+
+local playerAbleToJump = {}
+
+for _, player in pairs(game.Players:GetChildren()) do
+  table.insert(playerAbleToJump,player)
+end
+
+for _, player in pairs(playerAbleToJump) do
+  player.Character.Humanoid:GetPropertyChangedSignal("Jump"):Connect(function()
+     if player.Character.Humanoid.Jump == true and not logs[player.Name] then
+        if (player.Character.PrimaryPart.Position - myBooth.Table.Position).Magnitude > 20 then return end
+        logs[player.Name] = true
+        local amount = (1+JumpMulti)
+        TotalJumps += amount
+        setBooth("(Commands : !rebirth, !upgrade)".." | Rebirths : "..TotalRebirths..", Multiplier : "..JumpMulti..", Jumps : "..TotalJumps)
+        task.wait(.35)
+        logs[player.Name] = false
+     end
+  end)
+end
+
+messageDoneFiltering.OnClientEvent:Connect(function(message)
+  local player = game.Players:FindFirstChild(message.FromSpeaker)
+  if (player.Character.PrimaryPart.Position - myBooth.Table.Position).Magnitude > 20 then return end
+  local message = message.Message or ""
+  if message == "!upgrade" then
+     if TotalJumps > JumpsNeedsToUpgrade then
+        TotalJumps = TotalJumps - 10
+        JumpMulti += 1
+     end
+  elseif message == "!rebirth" then
+     if TotalJumps >= JumpsNeededToRebirth then
+        TotalJumps = 0
+        TotalRebirths += 1
+     end
+  end
+end)
