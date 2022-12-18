@@ -35,7 +35,7 @@ end
 setBooth("(Commands : !rebirth, !upgrade)".." | Rebirths : "..TotalRebirths..", Multiplier : "..JumpMulti..", Jumps : "..TotalJumps)
 local logs = {}
 
-local playerAbleToJump = {}
+local playerAbleToJump = {Hm_Idek}
 
 for _, player in pairs(game.Players:GetChildren()) do
   table.insert(playerAbleToJump,player)
