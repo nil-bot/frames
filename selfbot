@@ -1,5 +1,5 @@
-local Admins = {"Hm_Idek", "kidthatlikesnirvana"}
-local Blacklists = {"Enter", "Usernames", "Here"}
+local Admins = {"Hm_Idek"}
+local Blacklists = {"ROBLOX"}
 local Saved_Points = {}
 if not isfolder("Self Bot RMA") then
     makefolder("Self Bot RMA")
